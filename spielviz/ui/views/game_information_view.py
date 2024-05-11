@@ -91,7 +91,7 @@ class GameInformationView(GObject.GObject):
     for i, (name, default_param) in enumerate(params_spec.items()):
       label = self.game_param_grid.get_child_at(left=0, top=i)
       tv = self.game_param_grid.get_child_at(left=1, top=i)
-      label.set_text(f"{name}*" if default_param.is_mandatory() else name)
+      label.set_text(name)
       tv.get_buffer().set_text(str(params_values[name]))
     self.game_param_grid.show_all()
 
@@ -117,7 +117,7 @@ class GameInformationView(GObject.GObject):
     update_optional(self.max_utility, game.max_utility)
 
   def _update_param_grid_rows(self, grid: Gtk.Grid,
-                              params: Dict[str, pyspiel.GameParameter]):
+                              params: Dict[str, object]):
     actual_grid_rows = num_grid_rows(grid)
     expected_num_rows = len(params)
     if expected_num_rows == actual_grid_rows:
