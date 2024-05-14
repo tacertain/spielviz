@@ -1,6 +1,7 @@
 from typing import Dict
 
 import pyspiel
+from open_spiel.python import GameParameter
 from gi.repository import Gdk, Gtk, GObject
 
 from spielviz.ui import spielviz_events
@@ -117,7 +118,7 @@ class GameInformationView(GObject.GObject):
     update_optional(self.max_utility, game.max_utility)
 
   def _update_param_grid_rows(self, grid: Gtk.Grid,
-                              params: Dict[str, object]):
+                              params: Dict[str, GameParameter]):
     actual_grid_rows = num_grid_rows(grid)
     expected_num_rows = len(params)
     if expected_num_rows == actual_grid_rows:
